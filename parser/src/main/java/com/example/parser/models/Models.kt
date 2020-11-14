@@ -1,4 +1,6 @@
-package it.carlom.feature_a.models
+package com.example.parser.models
+
+import com.squareup.moshi.JsonClass
 
 
 abstract class Component(
@@ -11,6 +13,7 @@ object EmptyContent : Component(null)
 /**
  * @param arrangement can be SPACE_EVENLY, SPACE_AROUND, CENTER, START, END
  */
+@JsonClass(generateAdapter = true)
 class RowComponent(
     val arrangement: String? = null,
     override val content: List<Component> = emptyList(),
@@ -20,39 +23,46 @@ class RowComponent(
 /**
  * @param arrangement can be SPACE_EVENLY, SPACE_AROUND, CENTER, BOTTOM, TOP
  */
+@JsonClass(generateAdapter = true)
 class ColumnComponent(
     val arrangement: String? = null,
     override val content: List<Component> = emptyList(),
     override val modifier: ModifierComponent? = null,
 ) : Component(modifier)
 
+@JsonClass(generateAdapter = true)
 class CardComponent(
     override val content: Component = EmptyContent,
     override val modifier: ModifierComponent? = null,
 ) : Component(modifier)
 
+@JsonClass(generateAdapter = true)
 class TextComponent(
     val textStyle: TextStyleModifier? = null,
-    override val content: String,
+    override val content: String = "",
     override val modifier: ModifierComponent? = null,
 ) : Component(modifier)
 
+@JsonClass(generateAdapter = true)
 class TextButtonComponent(
     val textStyle: TextStyleModifier? = null,
-    override val content: String,
+    override val content: String= "",
     override val modifier: ModifierComponent? = null,
 ) : Component(modifier)
 
+@JsonClass(generateAdapter = true)
 class ImageComponent(
     val url: String? = null,
     override val modifier: ModifierComponent? = null,
 ) : Component(modifier)
 
+@JsonClass(generateAdapter = true)
 class VerticalScrollComponent(
     override val content: List<Component> = emptyList(),
     override val modifier: ModifierComponent? = null,
 ) : Component(modifier)
 
+@JsonClass(generateAdapter = true)
 class BoxComponent(
     override val content: Component = EmptyContent,
     override val modifier: ModifierComponent? = null,

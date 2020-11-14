@@ -14,7 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import it.carlom.feature_a.models.*
+import com.example.parser.models.*
 import it.carlom.feature_a.utils.GlideImage
 
 

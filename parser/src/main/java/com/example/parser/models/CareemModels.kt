@@ -1,4 +1,5 @@
-package it.carlom.feature_a.models
+package com.example.parser.models
+
 
 class CareemTileComponent(
     val image: String,

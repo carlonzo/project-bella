@@ -1,4 +1,4 @@
-package it.carlom.feature_a.models
+package it.carlom.feature_a
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.Modifier
@@ -7,13 +7,30 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.parser.models.ModifierComponent
+import com.example.parser.models.TextStyleModifier
 
 fun ModifierComponent?.toModifier(): Modifier {
-    return this?.createModifier() ?: Modifier
+    if (this == null) return Modifier
+
+    var initial: Modifier = Modifier
+
+    preferredWidth?.let { initial = initial.preferredWidth(it.dp) }
+    preferredHeight?.let { initial = initial.preferredHeight(it.dp) }
+    fillWidth?.let { initial = initial.fillMaxWidth() }
+    fillHeight?.let { initial = initial.fillMaxHeight() }
+    padding?.let { initial = initial.padding(it.dp) }
+
+    return initial.preferredWidth(preferredWidth?.dp ?: 0.dp)
 }
 
 fun TextStyleModifier?.toTextStyle(): TextStyle {
-    return this?.createTextStyle() ?: TextStyle()
+    if (this == null) return TextStyle()
+
+    return TextStyle(
+        color = color.toColor(),
+        fontSize = textSize?.sp ?: TextUnit.Inherit
+    )
 }
 
 fun String?.toColor(): Color {
@@ -29,44 +46,10 @@ fun String?.toColor(): Color {
     return Color(formatted.toLong(16))
 }
 
-open class ModifierComponent(
-    open val preferredWidth: Float? = null,
-    open val preferredHeight: Float? = null,
-    open val fillWidth: Boolean? = null,
-    open val fillHeight: Boolean? = null,
-    open val padding: Float? = null
-) {
-    internal open fun createModifier(): Modifier {
-
-        var initial: Modifier = Modifier
-
-        preferredWidth?.let { initial = initial.preferredWidth(it.dp) }
-        preferredHeight?.let { initial = initial.preferredHeight(it.dp) }
-        fillWidth?.let { initial = initial.fillMaxWidth() }
-        fillHeight?.let { initial = initial.fillMaxHeight() }
-        padding?.let { initial = initial.padding(it.dp) }
-
-        return initial.preferredWidth(preferredWidth?.dp ?: 0.dp)
-    }
-}
-
-class TextStyleModifier(
-    val color: String? = null,
-    val textSize: Float? = null,
-) {
-
-    internal fun createTextStyle(): TextStyle {
-        return TextStyle(
-            color = color.toColor(),
-            fontSize = textSize?.sp ?: TextUnit.Inherit
-        )
-    }
-
-}
 
 @OptIn(InternalLayoutApi::class)
 fun toHorizontalArrangement(horizontalArrangement: String?): Arrangement.Horizontal {
-    return when(horizontalArrangement){
+    return when (horizontalArrangement) {
         "SPACE_EVENLY" -> Arrangement.SpaceEvenly
         "SPACE_AROUND" -> Arrangement.SpaceAround
         "CENTER" -> Arrangement.Center
@@ -78,7 +61,7 @@ fun toHorizontalArrangement(horizontalArrangement: String?): Arrangement.Horizon
 
 @OptIn(InternalLayoutApi::class)
 fun toVerticalArrangement(verticalArrangement: String?): Arrangement.Vertical {
-    return when(verticalArrangement){
+    return when (verticalArrangement) {
         "SPACE_EVENLY" -> Arrangement.SpaceEvenly
         "SPACE_AROUND" -> Arrangement.SpaceAround
         "CENTER" -> Arrangement.Center
