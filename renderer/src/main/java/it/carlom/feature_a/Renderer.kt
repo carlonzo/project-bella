@@ -34,8 +34,18 @@ object Renderer {
             is CardComponent -> renderCard(component)
             is TextButtonComponent -> renderTextButton(component)
             is TextComponent -> renderText(component)
+            is ImageComponent -> renderImage(component)
+
+            else -> throw IllegalStateException("Component $component does not have a renderer")
 
         }
+
+    }
+
+    @Composable
+    fun renderImage(component: ImageComponent) {
+
+        GlideImage(model = component.url ?: "")
 
     }
 

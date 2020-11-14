@@ -8,15 +8,21 @@ abstract class Component(
 
 object EmptyContent : Component(null)
 
+/**
+ * @param arrangement can be SPACE_EVENLY, SPACE_AROUND, CENTER, START, END
+ */
 class RowComponent(
     val arrangement: String? = null,
     override val content: List<Component> = emptyList(),
     override val modifier: ModifierComponent? = null,
 ) : Component(modifier)
 
+/**
+ * @param arrangement can be SPACE_EVENLY, SPACE_AROUND, CENTER, BOTTOM, TOP
+ */
 class ColumnComponent(
-    override val content: List<Component> = emptyList(),
     val arrangement: String? = null,
+    override val content: List<Component> = emptyList(),
     override val modifier: ModifierComponent? = null,
 ) : Component(modifier)
 
@@ -39,18 +45,15 @@ class TextButtonComponent(
 
 class ImageComponent(
     val url: String? = null,
-    val res: Int? = null,
     override val modifier: ModifierComponent? = null,
 ) : Component(modifier)
 
 class VerticalScrollComponent(
-    val id: String? = null,
     override val content: List<Component> = emptyList(),
     override val modifier: ModifierComponent? = null,
 ) : Component(modifier)
 
 class BoxComponent(
-    val id: String? = null,
     override val content: Component = EmptyContent,
     override val modifier: ModifierComponent? = null,
 ) : Component(modifier)
