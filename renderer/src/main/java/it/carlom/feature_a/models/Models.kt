@@ -2,58 +2,56 @@ package it.carlom.feature_a.models
 
 
 abstract class Component(
+    open val modifier: ModifierComponent?,
+    open val content: Any? = null
 )
 
-object EmptyContent : Component()
+object EmptyContent : Component(null)
 
 class RowComponent(
-    val content: List<Component> = emptyList(),
-    val modifier: RowModifier? = null,
-) : Component()
+    val arrangement: String? = null,
+    override val content: List<Component> = emptyList(),
+    override val modifier: ModifierComponent? = null,
+) : Component(modifier)
 
 class ColumnComponent(
-    val content: List<Component> = emptyList(),
-    val modifier: ColumnModifier? = null,
-) : Component()
+    override val content: List<Component> = emptyList(),
+    val arrangement: String? = null,
+    override val modifier: ModifierComponent? = null,
+) : Component(modifier)
 
 class CardComponent(
-    val content: Component = EmptyContent,
-    val modifier: ModifierComponent? = null,
-) : Component()
+    override val content: Component = EmptyContent,
+    override val modifier: ModifierComponent? = null,
+) : Component(modifier)
 
 class TextComponent(
-    val text: String,
-    val modifier: TextModifier? = null,
-) : Component()
+    val textStyle: TextStyleModifier? = null,
+    override val content: String,
+    override val modifier: ModifierComponent? = null,
+) : Component(modifier)
 
 class TextButtonComponent(
-    val text: String,
-    val modifier: TextModifier? = null,
-) : Component()
+    val textStyle: TextStyleModifier? = null,
+    override val content: String,
+    override val modifier: ModifierComponent? = null,
+) : Component(modifier)
 
 class ImageComponent(
     val url: String? = null,
     val res: Int? = null,
-    val modifier: TextModifier? = null,
-) : Component()
+    override val modifier: ModifierComponent? = null,
+) : Component(modifier)
 
 class VerticalScrollComponent(
     val id: String? = null,
-    val childs: List<Component> = emptyList(),
-    val modifier: ModifierComponent? = null,
-) : Component()
+    override val content: List<Component> = emptyList(),
+    override val modifier: ModifierComponent? = null,
+) : Component(modifier)
 
 class BoxComponent(
     val id: String? = null,
-    val content: Component = EmptyContent,
-    val modifier: ModifierComponent? = null,
-) : Component()
-
-class CareemTileComponent(
-    val image: String,
-    val text: String
-) : Component() {
-
-}
-
+    override val content: Component = EmptyContent,
+    override val modifier: ModifierComponent? = null,
+) : Component(modifier)
 

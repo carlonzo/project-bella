@@ -8,16 +8,13 @@ import android.graphics.drawable.shapes.RectShape
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.FrameManager
-import androidx.compose.runtime.onCommit
-import androidx.compose.runtime.stateFor
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.WithConstraints
 import androidx.compose.ui.graphics.ImageAsset
 import androidx.compose.ui.graphics.asImageAsset
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.layout.WithConstraints
 import androidx.compose.ui.platform.ContextAmbient
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
@@ -35,8 +32,9 @@ fun GlideImage(
     customize: RequestBuilder<Bitmap>.() -> RequestBuilder<Bitmap> = { this }
 ) {
     WithConstraints {
-        val image = stateFor<ImageAsset?>(null) { null }
-        val drawable = stateFor<Drawable?>(null) { null }
+
+        val image = mutableStateOf<ImageAsset?>(null)
+        val drawable = mutableStateOf<Drawable?>(null)
         val context = ContextAmbient.current
 
         onCommit(model, {

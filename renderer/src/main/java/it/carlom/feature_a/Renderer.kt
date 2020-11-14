@@ -33,16 +33,27 @@ object Renderer {
             is CareemTileComponent -> renderCareemTile(component)
             is CardComponent -> renderCard(component)
             is TextButtonComponent -> renderTextButton(component)
+            is TextComponent -> renderText(component)
 
         }
 
     }
 
     @Composable
+    fun renderText(text: TextComponent) {
+        Text(
+            text = text.content,
+            style = text.textStyle.toTextStyle(),
+            modifier = text.modifier.toModifier()
+        )
+    }
+
+    @Composable
     fun renderRow(row: RowComponent) {
 
         androidx.compose.foundation.layout.Row(
-            modifier = row.modifier.toModifier()
+            modifier = row.modifier.toModifier(),
+            horizontalArrangement = toHorizontalArrangement(row.arrangement)
         ) {
 
             row.content.forEach {
@@ -71,9 +82,11 @@ object Renderer {
     @Composable
     fun renderVerticalScroll(verticalScroll: VerticalScrollComponent) {
 
-        ScrollableColumn {
+        ScrollableColumn(
+            modifier = verticalScroll.modifier.toModifier()
+        ) {
 
-            verticalScroll.childs.forEach {
+            verticalScroll.content.forEach {
                 render(component = it)
             }
 
@@ -93,32 +106,6 @@ object Renderer {
     }
 
     @Composable
-    fun renderCareemTile(careemTile: CareemTileComponent) {
-
-        Card(modifier = Modifier.preferredHeight(100.dp).padding(4.dp)) {
-
-            Column(horizontalAlignment = CenterHorizontally) {
-
-                Box(modifier = Modifier.preferredSize(80.dp, 52.dp)) {
-                    GlideImage(careemTile.image)
-                }
-
-                Text(
-                    modifier = Modifier.align(CenterHorizontally),
-                    text = careemTile.text,
-                    style = TextStyle(
-                    color = Color(0xff2d2e2e), //black100
-                        fontSize = 14.sp
-                    )
-                )
-            }
-
-        }
-
-
-    }
-
-    @Composable
     fun renderCard(card: CardComponent) {
 
         Card(
@@ -133,13 +120,38 @@ object Renderer {
     fun renderTextButton(textButton: TextButtonComponent) {
 
         TextButton(
-            modifier = textButton.modifier.toModifier()
+            modifier = textButton.modifier.toModifier(),
             onClick = {}
         ) {
-            Text(text = textButton.text, style = TextStyle())
+            Text(text = textButton.content, style = textButton.textStyle.toTextStyle())
         }
 
     }
 
 
+    @Composable
+    fun renderCareemTile(careemTile: CareemTileComponent) {
+
+        Card(modifier = Modifier.preferredHeight(100.dp).padding(4.dp)) {
+
+            Column(horizontalAlignment = CenterHorizontally) {
+
+                Box(modifier = Modifier.preferredSize(80.dp, 52.dp)) {
+                    GlideImage(careemTile.image)
+                }
+
+                Text(
+                    modifier = Modifier.align(CenterHorizontally),
+                    text = careemTile.text,
+                    style = TextStyle(
+                        color = Color(0xff2d2e2e), //black100
+                        fontSize = 14.sp
+                    )
+                )
+            }
+
+        }
+
+
+    }
 }

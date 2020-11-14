@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -13,8 +12,8 @@ fun ModifierComponent?.toModifier(): Modifier {
     return this?.createModifier() ?: Modifier
 }
 
-fun TextModifier?.toTextStyle(): TextStyle {
-
+fun TextStyleModifier?.toTextStyle(): TextStyle {
+    return this?.createTextStyle() ?: TextStyle()
 }
 
 fun String?.toColor(): Color {
@@ -51,14 +50,12 @@ open class ModifierComponent(
     }
 }
 
-class TextModifier(
-//    val font: String? = null,
-//    val fontWeight: String? = null,
+class TextStyleModifier(
     val color: String? = null,
     val textSize: Float? = null,
-) : ModifierComponent() {
+) {
 
-    internal open fun createTextStyle(): TextStyle {
+    internal fun createTextStyle(): TextStyle {
         return TextStyle(
             color = color.toColor(),
             fontSize = textSize?.sp ?: TextUnit.Inherit
@@ -67,20 +64,26 @@ class TextModifier(
 
 }
 
-class RowModifier(
-    val horizontalArrangement: ArrangementModifier? = null,
-    val verticalArrangement: ArrangementModifier? = null,
-) : ModifierComponent()
-
-class ColumnModifier(
-    val horizontalArrangement: ArrangementModifier? = null,
-    val verticalArrangement: ArrangementModifier? = null,
-) : ModifierComponent()
-
-enum class ArrangementModifier {
-    SPACE_EVENLY, SPACE_AROUND, CENTER, START, BOTTOM, END, TOP
+@OptIn(InternalLayoutApi::class)
+fun toHorizontalArrangement(horizontalArrangement: String?): Arrangement.Horizontal {
+    return when(horizontalArrangement){
+        "SPACE_EVENLY" -> Arrangement.SpaceEvenly
+        "SPACE_AROUND" -> Arrangement.SpaceAround
+        "CENTER" -> Arrangement.Center
+        "START" -> Arrangement.Start
+        "END" -> Arrangement.End
+        else -> Arrangement.Start
+    }
 }
 
-enum class AlignmentModifier {
-    CENTER, CENTER_HORIZONTALLY, CENTER_VERTICALLY, START, END,
+@OptIn(InternalLayoutApi::class)
+fun toVerticalArrangement(verticalArrangement: String?): Arrangement.Vertical {
+    return when(verticalArrangement){
+        "SPACE_EVENLY" -> Arrangement.SpaceEvenly
+        "SPACE_AROUND" -> Arrangement.SpaceAround
+        "CENTER" -> Arrangement.Center
+        "BOTTOM" -> Arrangement.Bottom
+        "TOP" -> Arrangement.Top
+        else -> Arrangement.Top
+    }
 }

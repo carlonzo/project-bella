@@ -8,14 +8,15 @@ object Home {
 
     val content: Component =
         VerticalScrollComponent(
-            childs = listOf(
+            content = listOf(
 
                 BoxComponent(
                     content = ColumnComponent(
                         content = listOf(
 
                             RowComponent(
-                                modifier = RowModifier(horizontalArrangement = ArrangementModifier.SPACE_EVENLY, fillWidth = true ),
+                                modifier = ModifierComponent(fillWidth = true),
+                                arrangement = "SPACE_EVENLY",
                                 content = listOf(
                                     CareemTileComponent(
                                         image = "https://careem-prod-superapp-lts.s3-eu-west-1.amazonaws.com/assets/service_tile/ic_static_car_xxhdpi.png",
@@ -34,7 +35,8 @@ object Home {
                             ),
 
                             RowComponent(
-                                modifier = RowModifier(horizontalArrangement = ArrangementModifier.SPACE_EVENLY, fillWidth = true),
+                                modifier = ModifierComponent(fillWidth = true),
+                                arrangement = "SPACE_EVENLY",
                                 content = listOf(
                                     CareemTileComponent(
                                         image = "https://careem-prod-superapp-lts.s3-eu-west-1.amazonaws.com/assets/service_tile/ic_static_food_xxhdpi.png",
@@ -58,11 +60,13 @@ object Home {
 
         )
 
-    @Preview
-    @Composable
-    fun preview(){
-        Renderer.render(component = content)
-    }
 
 
+
+}
+
+@Preview
+@Composable
+fun preview() {
+    Renderer.render(component = Home.content)
 }
