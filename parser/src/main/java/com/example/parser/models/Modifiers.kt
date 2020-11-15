@@ -1,14 +1,21 @@
 package com.example.parser.models
 
-open class ModifierComponent(
-    open val preferredWidth: Float? = null,
-    open val preferredHeight: Float? = null,
-    open val fillWidth: Boolean? = null,
-    open val fillHeight: Boolean? = null,
-    open val padding: Float? = null
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class ModifierComponent(
+    val width: Float? = null,
+    val height: Float? = null,
+    val fillWidth: Boolean? = null,
+    val fillHeight: Boolean? = null,
+    val paddingAll: Float? = null,
+    val padding: List<Float>? = null, // [top, right, bottom, left]
+    @SerialName("corner_radius") val cornerRadius: Float? = null
 )
 
-class TextStyleModifier(
+@Serializable
+data class TextStyleModifier(
     val color: String? = null,
-    val textSize: Float? = null,
+    @SerialName("text_size") val textSize: Float? = null,
 )

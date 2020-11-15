@@ -15,13 +15,13 @@ fun ModifierComponent?.toModifier(): Modifier {
 
     var initial: Modifier = Modifier
 
-    preferredWidth?.let { initial = initial.preferredWidth(it.dp) }
-    preferredHeight?.let { initial = initial.preferredHeight(it.dp) }
+    width?.let { initial = initial.preferredWidth(it.dp) }
+    height?.let { initial = initial.preferredHeight(it.dp) }
     fillWidth?.let { initial = initial.fillMaxWidth() }
     fillHeight?.let { initial = initial.fillMaxHeight() }
-    padding?.let { initial = initial.padding(it.dp) }
+    paddingAll?.let { initial = initial.padding(it.dp) }
 
-    return initial.preferredWidth(preferredWidth?.dp ?: 0.dp)
+    return initial.preferredWidth(width?.dp ?: 0.dp)
 }
 
 fun TextStyleModifier?.toTextStyle(): TextStyle {

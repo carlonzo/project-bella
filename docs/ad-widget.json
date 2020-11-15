@@ -6,8 +6,7 @@
             "content": "ORDER FOOD",
             "text-style": {
                 "font": "caption",
-                "font-weight": "semibold",
-                "color": "black80",
+                "color": "ffff90"
             }
         },
         {
@@ -31,7 +30,7 @@
                             "modifiers": {
                                 "font": "body",
                                 "font-weight": "semibold",
-                                "color": "black100"
+                                "color": "ffff90"
                             }
                         },
                         {
@@ -40,7 +39,7 @@
                             "modifiers": {
                                 "font": "callout",
                                 "font-weight": "regular",
-                                "color": "black90"
+                                "color": "ffff90"
                             }
                         }
                     ],
@@ -73,7 +72,7 @@
                         "text-style": "emerald-text-style-name",
                         "font": "body",
                         "font-weight": "semibold",
-                        "color": "green110"
+                        "color": "ffff90"
                     }
                 }
             ],

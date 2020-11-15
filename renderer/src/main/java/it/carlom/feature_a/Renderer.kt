@@ -45,7 +45,7 @@ object Renderer {
     @Composable
     fun renderImage(component: ImageComponent) {
 
-        GlideImage(model = component.url ?: "")
+        GlideImage(model = component.content ?: "")
 
     }
 
@@ -119,7 +119,8 @@ object Renderer {
     fun renderCard(card: CardComponent) {
 
         Card(
-            modifier = card.modifier.toModifier()
+            modifier = card.modifier.toModifier(),
+
         ) {
             render(component = card.content)
         }
@@ -131,7 +132,7 @@ object Renderer {
 
         TextButton(
             modifier = textButton.modifier.toModifier(),
-            onClick = {}
+            onClick = {},
         ) {
             Text(text = textButton.content, style = textButton.textStyle.toTextStyle())
         }
