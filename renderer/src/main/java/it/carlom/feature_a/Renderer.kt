@@ -23,7 +23,7 @@ import it.carlom.feature_a.utils.GlideImage
 object Renderer {
 
     @Composable
-    fun render(component: Component) {
+    fun <C : Component> render(component: C) {
 
         when (component) {
 
