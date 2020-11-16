@@ -1,92 +1,93 @@
 {
-    "type": "vstack",
-    "content": [
-        {
-            "type": "text",
-            "content": "ORDER FOOD",
-            "text-style": {
-                "font": "caption",
-                "color": "ff2d2e2e"
-            }
-        },
-        {
-            "type": "hstack",
-            "content": [
-                {
-                    "type": "image",
-                    "content": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/d6b73a3eee477051428131275fc1c357",
-                    "modifier": {
-                        "width": 86,
-                        "height": 64,
-                        "corner-radius": 8
-                    }
-                },
-                {
-                    "type": "vstack",
-                    "content": [
-                        {
-                            "type": "text",
-                            "content": "Today's special",
-                            "text_style": {
-                                "font": "body",
-                                "font-weight": "semibold",
-                                "color": "ff2d2e2e"
-                            }
-                        },
-                        {
-                            "type": "text",
-                            "content": "Discover today’s special offers on your favourite restaurants.",
-                            "text_style": {
-                                "font": "callout",
-                                "font-weight": "regular",
-                                "color": "ff2d2e2e"
-                            }
+    "type": "card",
+    "content" : {
+        "type": "vstack",
+        "content": [
+            {
+                "type": "text",
+                "content": "ORDER FOOD",
+                "text_style": {
+                    "font": "caption",
+                    "color": "ff2d2e2e"
+                }
+            },
+            {
+                "type": "hstack",
+                "content": [
+                    {
+                        "type": "image",
+                        "content": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/d6b73a3eee477051428131275fc1c357",
+                        "modifier": {
+                            "width": 86,
+                            "height": 64,
+                            "corner_radius": 8
                         }
-                    ],
-                    "modifier": {
-                        "spacing": 8
+                    },
+                    {
+                        "type": "vstack",
+                        "content": [
+                            {
+                                "type": "text",
+                                "content": "Today's special",
+                                "text_style": {
+                                    "font": "body",
+                                    "font_weight": "semibold",
+                                    "color": "ff2d2e2e"
+                                }
+                            },
+                            {
+                                "type": "text",
+                                "content": "Discover today’s special offers on your favourite restaurants.",
+                                "text_style": {
+                                    "font": "callout",
+                                    "font_weight": "regular",
+                                    "color": "ff2d2e2e"
+                                }
+                            }
+                        ],
+                        "modifier": {
+                            "spacing": 8
+                        }
                     }
+                ]
+            },
+            {
+                "type": "button",
+                "action": "careem://now.careem.com/home",
+                "content": [
+                    {
+                        "type": "image",
+                        "content": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/d6b73a3eee477051428131275fc1c357",
+                        "modifier": {
+                            "width": 86,
+                            "height": 64,
+                            "corner_radius": 8
+                        }
+                    },
+                    {
+                        "type": "text",
+                        "content": "Order now",
+                        "text_style": {
+                            "font": "body",
+                            "font_weight": "semibold",
+                            "color": "ff2d2e2e"
+                        }
+                    }
+                ],
+                "modifier": {
+                    "background_color": "green10",
+                    "fill_width": true,
+                    "height": 48,
+                    "corner_radius": 24
                 }
-            ],
-            "modifier": {
-                "spacing": 16
             }
-        },
-        {
-            "type": "button",
-            "action": "careem://now.careem.com/home",
-            "content": [
-                {
-                    "type": "image",
-                    "content": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/d6b73a3eee477051428131275fc1c357",
-                    "modifier": {
-                        "width": 86,
-                        "height": 64,
-                        "corner-radius": 8
-                    }
-                },
-                {
-                    "type": "text",
-                    "content": "Order now",
-                    "text_style": {
-                        "font": "body",
-                        "font-weight": "semibold",
-                        "color": "ff2d2e2e"
-                    }
-                }
-            ],
-            "modifier": {
-                "background-color": "green10",
-                "fillWidth": true,
-                "height": 48,
-                "corner-radius": 24
-            }
+        ],
+        "modifier": {
+            "padding_all": 16
         }
-    ],
+    },
     "modifier": {
-        "fillWidth": true,
-        "fillHeight": true,
-        "spacing": 16,
-        "padding-all": 16
+        "padding_all": 16,
+        "elevation": 4
     }
 }

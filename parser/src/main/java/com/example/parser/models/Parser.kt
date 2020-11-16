@@ -19,7 +19,8 @@ object Parser {
             subclass(TextButtonComponent::class)
             subclass(ImageComponent::class)
             subclass(VerticalScrollComponent::class)
-            subclass(BoxComponent::class)
+            subclass(HorizontalScrollComponent::class)
+            subclass(SpacerComponent::class)
         }
 
         polymorphic(Component::class) { registerProjectSubclasses() }

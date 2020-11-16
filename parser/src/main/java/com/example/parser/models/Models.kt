@@ -22,7 +22,7 @@ object EmptyContent : Component() {
  */
 @SerialName("hstack")
 @Serializable
-class RowComponent(
+data class RowComponent(
     val arrangement: String? = null,
     override val content: List<Component> = emptyList(),
     override val modifier: ModifierComponent = EmptyModifier,
@@ -33,7 +33,7 @@ class RowComponent(
  */
 @SerialName("vstack")
 @Serializable
-class ColumnComponent(
+data class ColumnComponent(
     val arrangement: String? = null,
     override val content: List<Component> = emptyList(),
     override val modifier: ModifierComponent = EmptyModifier,
@@ -41,14 +41,15 @@ class ColumnComponent(
 
 @SerialName("card")
 @Serializable
-class CardComponent(
+data class CardComponent(
     override val content: Component = EmptyContent,
     override val modifier: ModifierComponent = EmptyModifier,
+    val elevation: Int = 1
 ) : Component()
 
 @SerialName("text")
 @Serializable
-class TextComponent(
+data class TextComponent(
     @SerialName("text_style") val textStyle: TextStyleModifier = EmptyTextStyle,
     override val content: String = "",
     override val modifier: ModifierComponent = EmptyModifier,
@@ -56,7 +57,7 @@ class TextComponent(
 
 @SerialName("button")
 @Serializable
-class TextButtonComponent(
+data class TextButtonComponent(
     @SerialName("text_style") val textStyle: TextStyleModifier = EmptyTextStyle,
     override val content: List<Component> = emptyList(),
     override val modifier: ModifierComponent = EmptyModifier,
@@ -64,21 +65,30 @@ class TextButtonComponent(
 
 @SerialName("image")
 @Serializable
-class ImageComponent(
+data class ImageComponent(
     override val content: String? = null,
     override val modifier: ModifierComponent = EmptyModifier,
 ) : Component()
 
 @SerialName("vscroll")
 @Serializable
-class VerticalScrollComponent(
+data class VerticalScrollComponent(
     override val content: List<Component> = emptyList(),
     override val modifier: ModifierComponent = EmptyModifier,
 ) : Component()
 
 @SerialName("hscroll")
 @Serializable
-class BoxComponent(
-    override val content: Component = EmptyContent,
+data class HorizontalScrollComponent(
+    override val content: List<Component> = emptyList(),
     override val modifier: ModifierComponent = EmptyModifier,
 ) : Component()
+
+@SerialName("spacer")
+@Serializable
+data class SpacerComponent(
+    override val content: String? = null,
+    override val modifier: ModifierComponent = EmptyModifier,
+) : Component()
+
+

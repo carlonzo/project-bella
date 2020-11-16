@@ -7,23 +7,19 @@
 - vscroll
 - hscroll
 - spacer
-- card (container with a padding and elevation)
-
-- progress
-- divider
-- zstack
+- card
 
 # Modifiers
 - padding ([top, right, bottom, left])
-- padding-all (16)
+- padding_all (16)
 - width
 - height
-- corner-radius
-- maxWidth (true|false)
-- maxHeight (true|false)
+- corner_radius
+- fill_width (true|false)
+- fill_weight (true|false)
 
 
-#Custom field
+# Custom field
 - text:
   - text_style [{font, size, color, weight}]
 
@@ -32,3 +28,7 @@
 
 - hstack:
   - arrangement: [space_evenly, center, top, bottom]
+
+- card:
+  - elevation
+ 

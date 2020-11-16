@@ -12,7 +12,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.setContent
 import com.example.parser.models.Parser
 import it.carlom.feature_a.Renderer
-import radiography.ExperimentalRadiographyComposeApi
 import radiography.Radiography
 
 class MainActivity : AppCompatActivity() {
@@ -30,11 +29,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         Handler(Looper.getMainLooper()).post {
-
-            @OptIn(ExperimentalRadiographyComposeApi::class)
             val radio = Radiography.scan()
             println(radio)
-
         }
     }
 }

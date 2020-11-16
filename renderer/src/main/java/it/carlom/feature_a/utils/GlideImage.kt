@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.layout.WithConstraints
 import androidx.compose.ui.platform.ContextAmbient
+import androidx.compose.ui.platform.testTag
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.request.target.CustomTarget
@@ -105,10 +106,10 @@ fun GlideImage(
         val theDrawable = drawable.value
         when {
             theImage != null -> {
-                Image(asset = theImage)
+                Image(modifier = Modifier.testTag("GlideImage"), asset = theImage)
             }
             theDrawable != null -> {
-                Canvas(modifier = Modifier.fillMaxSize()) {
+                Canvas(modifier = Modifier.fillMaxSize().testTag("GlideImage-Canvas")) {
                     drawIntoCanvas { canvas -> theDrawable.draw(canvas.nativeCanvas) }
                 }
             }

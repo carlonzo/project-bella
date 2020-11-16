@@ -8,12 +8,12 @@ val EmptyTextStyle = TextStyleModifier()
 
 @Serializable
 data class ModifierComponent(
-    val width: Float? = null,
-    val height: Float? = null,
-    val fillWidth: Boolean? = null,
-    val fillHeight: Boolean? = null,
-    val paddingAll: Float? = null,
-    val padding: List<Float>? = null, // [top, right, bottom, left]
+    val width: Int? = null,
+    val height: Int? = null,
+    @SerialName("fill_width") val fillWidth: Boolean? = null,
+    @SerialName("fill_height") val fillHeight: Boolean? = null,
+    @SerialName("padding_all")val paddingAll: Float? = null,
+    val padding: List<Int>? = null, // [top, right, bottom, left]
     @SerialName("corner_radius") val cornerRadius: Float? = null
 )
 

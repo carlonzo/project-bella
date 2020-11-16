@@ -3,6 +3,7 @@
 package it.carlom.feature_a
 
 import androidx.compose.foundation.ScrollableColumn
+import androidx.compose.foundation.ScrollableRow
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.Text
@@ -11,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,13 +30,14 @@ object Renderer {
             is EmptyContent -> return
             is RowComponent -> renderRow(component)
             is ColumnComponent -> renderColumn(component)
-            is VerticalScrollComponent -> renderVerticalScroll(component)
-            is BoxComponent -> renderBox(component)
-            is CareemTileComponent -> renderCareemTile(component)
+            is TextComponent -> renderText(component)
             is CardComponent -> renderCard(component)
             is TextButtonComponent -> renderTextButton(component)
-            is TextComponent -> renderText(component)
             is ImageComponent -> renderImage(component)
+            is SpacerComponent -> renderSpacer(component)
+            is VerticalScrollComponent -> renderVerticalScroll(component)
+            is HorizontalScrollComponent -> renderHorizontalScroll(component)
+            is CareemTileComponent -> renderCareemTile(component)
 
             else -> throw IllegalStateException("Component $component does not have a renderer")
 
@@ -45,7 +48,12 @@ object Renderer {
     @Composable
     fun renderImage(component: ImageComponent) {
 
-        GlideImage(model = component.content ?: "")
+        GlideImage(model = component.content ?: "") {
+            if (component.modifier.width != null && component.modifier.height != null) {
+                override(component.modifier.width!!, component.modifier.height!!)
+            }
+            this
+        }
 
     }
 
@@ -54,7 +62,7 @@ object Renderer {
         Text(
             text = text.content,
             style = text.textStyle.toTextStyle(),
-            modifier = text.modifier.toModifier()
+            modifier = text.modifier.toModifier().testTag("Text")
         )
     }
 
@@ -62,7 +70,7 @@ object Renderer {
     fun renderRow(row: RowComponent) {
 
         androidx.compose.foundation.layout.Row(
-            modifier = row.modifier.toModifier(),
+            modifier = row.modifier.toModifier().testTag("Row"),
             horizontalArrangement = toHorizontalArrangement(row.arrangement)
         ) {
 
@@ -78,7 +86,7 @@ object Renderer {
     fun renderColumn(column: ColumnComponent) {
 
         androidx.compose.foundation.layout.Column(
-            modifier = column.modifier.toModifier()
+            modifier = column.modifier.toModifier().testTag("Column")
         ) {
 
             column.content.forEach {
@@ -93,7 +101,7 @@ object Renderer {
     fun renderVerticalScroll(verticalScroll: VerticalScrollComponent) {
 
         ScrollableColumn(
-            modifier = verticalScroll.modifier.toModifier()
+            modifier = verticalScroll.modifier.toModifier().testTag("ScrollableColumn")
         ) {
 
             verticalScroll.content.forEach {
@@ -105,12 +113,14 @@ object Renderer {
     }
 
     @Composable
-    fun renderBox(box: BoxComponent) {
+    fun renderHorizontalScroll(horizontalScroll: HorizontalScrollComponent) {
 
-        androidx.compose.foundation.layout.Box(
-            modifier = box.modifier.toModifier()
+        ScrollableRow(
+            modifier = horizontalScroll.modifier.toModifier().testTag("ScrollableRow")
         ) {
-            render(box.content)
+            horizontalScroll.content.forEach {
+                render(component = it)
+            }
         }
 
     }
@@ -119,9 +129,9 @@ object Renderer {
     fun renderCard(card: CardComponent) {
 
         Card(
-            modifier = card.modifier.toModifier(),
-
-            ) {
+            modifier = card.modifier.toModifier().testTag("Card"),
+            elevation = card.elevation.dp
+        ) {
             render(component = card.content)
         }
 
@@ -131,13 +141,22 @@ object Renderer {
     fun renderTextButton(textButton: TextButtonComponent) {
 
         TextButton(
-            modifier = textButton.modifier.toModifier(),
+            modifier = textButton.modifier.toModifier().testTag("TextButton"),
             onClick = {},
         ) {
             textButton.content.forEach {
-
+                render(it)
             }
         }
+
+    }
+
+    @Composable
+    fun renderSpacer(spacer: SpacerComponent) {
+
+        Spacer(
+            modifier = spacer.modifier.toModifier().testTag("Spacer"),
+        )
 
     }
 

@@ -42,3 +42,5 @@ subprojects {
         }
     }
 }
+
+wrapper.distributionType = Wrapper.DistributionType.ALL
