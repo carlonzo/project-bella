@@ -25,7 +25,7 @@
 
 #Custom field
 - text:
-  - text-style [{font, size, color, weight}]
+  - text_style [{font, size, color, weight}]
 
 - vstack:
   - arrangement: [space_evenly, center, start, end]

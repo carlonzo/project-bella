@@ -2,7 +2,6 @@
 buildscript {
     ext.kotlin_version = "1.4.10"
     ext.compose_version = '1.0.0-alpha07'
-    ext.moshi_kotlin_version = '1.11.0'
     repositories {
         google()
         jcenter()
@@ -34,9 +33,9 @@ subprojects {
             // Treat all Kotlin warnings as errors
             allWarningsAsErrors = true
             freeCompilerArgs += '-Xopt-in=kotlin.RequiresOptIn'
-            // Enable experimental coroutines APIs, including Flow
+
             freeCompilerArgs += '-Xopt-in=kotlin.Experimental'
-            freeCompilerArgs += '-Xallow-jvm-ir-dependencies'
+            useIR = true
 
             // Set JVM target to 1.8
             jvmTarget = "1.8"

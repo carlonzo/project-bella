@@ -8,10 +8,8 @@ class CareemTileComponent(
     val text: String
 ) : Component() {
 
-    override val modifier: ModifierComponent?
-        get() = null
-    override val content: Any?
-        get() = null
+    override val modifier: ModifierComponent = EmptyModifier
+    override val content: String? = null
 
 }
 

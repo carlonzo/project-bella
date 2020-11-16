@@ -121,7 +121,7 @@ object Renderer {
         Card(
             modifier = card.modifier.toModifier(),
 
-        ) {
+            ) {
             render(component = card.content)
         }
 
@@ -134,7 +134,9 @@ object Renderer {
             modifier = textButton.modifier.toModifier(),
             onClick = {},
         ) {
-            Text(text = textButton.content, style = textButton.textStyle.toTextStyle())
+            textButton.content.forEach {
+
+            }
         }
 
     }

@@ -1,27 +1,39 @@
 package it.carlom.composables
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.setContent
-import com.bumptech.glide.Glide
-import com.bumptech.glide.GlideBuilder
-import it.carlom.feature_a.Home
+import com.example.parser.models.Parser
 import it.carlom.feature_a.Renderer
+import radiography.ExperimentalRadiographyComposeApi
+import radiography.Radiography
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContent{
+        val text = resources.assets.open("ad-widget.json").bufferedReader().use { it.readText() }
+        val rootComponent = Parser.parse(text)
+
+        setContent {
 
             Surface(color = Color.White, modifier = Modifier.fillMaxWidth().fillMaxHeight()) {
-                Renderer.render(component = Home.content)
+                Renderer.render(component = rootComponent)
             }
+        }
+
+        Handler(Looper.getMainLooper()).post {
+
+            @OptIn(ExperimentalRadiographyComposeApi::class)
+            val radio = Radiography.scan()
+            println(radio)
 
         }
     }

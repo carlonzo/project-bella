@@ -3,6 +3,9 @@ package com.example.parser.models
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+val EmptyModifier = ModifierComponent()
+val EmptyTextStyle = TextStyleModifier()
+
 @Serializable
 data class ModifierComponent(
     val width: Float? = null,

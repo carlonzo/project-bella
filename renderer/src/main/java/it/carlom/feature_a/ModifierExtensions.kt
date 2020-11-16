@@ -21,7 +21,7 @@ fun ModifierComponent?.toModifier(): Modifier {
     fillHeight?.let { initial = initial.fillMaxHeight() }
     paddingAll?.let { initial = initial.padding(it.dp) }
 
-    return initial.preferredWidth(width?.dp ?: 0.dp)
+    return initial
 }
 
 fun TextStyleModifier?.toTextStyle(): TextStyle {
