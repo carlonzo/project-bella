@@ -14,7 +14,6 @@
 - padding_all (16)
 - width
 - height
-- corner_radius
 - fill_width (true|false)
 - fill_weight (true|false)
 
@@ -31,4 +30,8 @@
 
 - card:
   - elevation
+
+- button:
+  - background_color
+  - corner_radius (% radius)
  

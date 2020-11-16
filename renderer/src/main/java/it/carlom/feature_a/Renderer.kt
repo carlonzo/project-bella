@@ -5,9 +5,9 @@ package it.carlom.feature_a
 import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.ScrollableRow
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Card
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
+import androidx.compose.material.ButtonConstants.defaultTextButtonColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
@@ -140,9 +140,25 @@ object Renderer {
     @Composable
     fun renderTextButton(textButton: TextButtonComponent) {
 
+        val colors = if (textButton.backgroundColor != null) {
+            defaultTextButtonColors(
+                backgroundColor = textButton.backgroundColor.toColor()
+            )
+        } else {
+            ButtonConstants.defaultTextButtonColors()
+        }
+
+        val shape = if (textButton.cornerRadius != null) {
+            RoundedCornerShape(percent = textButton.cornerRadius!!)
+        } else {
+            MaterialTheme.shapes.small
+        }
+
         TextButton(
             modifier = textButton.modifier.toModifier().testTag("TextButton"),
             onClick = {},
+            colors = colors,
+            shape = shape
         ) {
             textButton.content.forEach {
                 render(it)

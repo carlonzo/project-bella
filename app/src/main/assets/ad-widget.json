@@ -19,8 +19,7 @@
                         "content": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/d6b73a3eee477051428131275fc1c357",
                         "modifier": {
                             "width": 86,
-                            "height": 64,
-                            "corner_radius": 8
+                            "height": 64
                         }
                     },
                     {
@@ -60,8 +59,7 @@
                         "content": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/d6b73a3eee477051428131275fc1c357",
                         "modifier": {
                             "width": 86,
-                            "height": 64,
-                            "corner_radius": 8
+                            "height": 64
                         }
                     },
                     {
@@ -70,15 +68,16 @@
                         "text_style": {
                             "font": "body",
                             "font_weight": "semibold",
-                            "color": "ff2d2e2e"
+                            "color": "ff2d2e2e",
+                            "size": 30
                         }
                     }
                 ],
+                "background_color": "1A18ab33",
+                "corner_radius": 50,
                 "modifier": {
-                    "background_color": "green10",
                     "fill_width": true,
-                    "height": 48,
-                    "corner_radius": 24
+                    "height": 48
                 }
             }
         ],

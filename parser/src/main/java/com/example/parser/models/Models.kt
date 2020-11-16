@@ -61,6 +61,8 @@ data class TextButtonComponent(
     @SerialName("text_style") val textStyle: TextStyleModifier = EmptyTextStyle,
     override val content: List<Component> = emptyList(),
     override val modifier: ModifierComponent = EmptyModifier,
+    @SerialName("background_color") val backgroundColor: String? = null,
+    @SerialName("corner_radius") val cornerRadius: Int? = null
 ) : Component()
 
 @SerialName("image")

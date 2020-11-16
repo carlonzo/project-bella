@@ -32,7 +32,7 @@ fun TextStyleModifier?.toTextStyle(): TextStyle {
 
     return TextStyle(
         color = color.toColor(),
-        fontSize = textSize?.sp ?: TextUnit.Inherit
+        fontSize = size?.sp ?: TextUnit.Inherit
     )
 }
 
