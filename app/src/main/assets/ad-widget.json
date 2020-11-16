@@ -68,8 +68,7 @@
                         "text_style": {
                             "font": "body",
                             "font_weight": "semibold",
-                            "color": "ff2d2e2e",
-                            "size": 30
+                            "color": "ff2d2e2e"
                         }
                     }
                 ],
