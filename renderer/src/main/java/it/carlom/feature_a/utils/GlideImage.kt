@@ -7,7 +7,8 @@ import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.RectShape
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageAsset
@@ -17,6 +18,7 @@ import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.layout.WithConstraints
 import androidx.compose.ui.platform.ContextAmbient
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.unit.dp
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.request.target.CustomTarget
@@ -112,6 +114,9 @@ fun GlideImage(
                 Canvas(modifier = Modifier.fillMaxSize().testTag("GlideImage-Canvas")) {
                     drawIntoCanvas { canvas -> theDrawable.draw(canvas.nativeCanvas) }
                 }
+            }
+            else -> {
+                Box(modifier = Modifier.preferredSize(80.dp, 80.dp).background(androidx.compose.ui.graphics.Color.Gray))
             }
         }
     }

@@ -15,12 +15,17 @@
 - width
 - height
 - fill_width (true|false)
-- fill_weight (true|false)
+- fill_height (true|false)
 
 
 # Custom field
 - text:
-  - text_style [{font, size, color, weight}]
+  - text_style: 
+    - font_weight: [thin, extralight, light, normal, medium, semibold, bold, extrabold, black]
+    - size
+    - color
+    - font (font family)
+    - line_height
 
 - vstack:
   - arrangement: [space_evenly, center, start, end]

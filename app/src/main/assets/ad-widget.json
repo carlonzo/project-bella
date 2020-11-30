@@ -7,9 +7,18 @@
                 "type": "text",
                 "content": "ORDER FOOD",
                 "text_style": {
-                    "font": "caption",
-                    "color": "ff2d2e2e"
+                    "font": "inter",
+                    "font_weight": "semibold",
+                    "color": "ff8697a4",
+                    "size": 12
                 }
+            },
+            {
+                "type": "spacer",
+                "modifiers": {
+                    "height": 16
+                }
+
             },
             {
                 "type": "hstack",
@@ -23,14 +32,23 @@
                         }
                     },
                     {
+                        "type": "spacer",
+                        "modifiers": {
+                            "height": 8
+                        }
+
+                    },
+                    {
                         "type": "vstack",
                         "content": [
                             {
                                 "type": "text",
                                 "content": "Today's special",
                                 "text_style": {
-                                    "font": "body",
+                                    "font": "inter",
                                     "font_weight": "semibold",
+                                    "size": 16,
+                                    "line_height": 24,
                                     "color": "ff2d2e2e"
                                 }
                             },
@@ -38,37 +56,35 @@
                                 "type": "text",
                                 "content": "Discover today’s special offers on your favourite restaurants.",
                                 "text_style": {
-                                    "font": "callout",
+                                    "font": "inter",
                                     "font_weight": "regular",
+                                    "size": 16,
+                                    "line_height": 20,
                                     "color": "ff2d2e2e"
                                 }
                             }
-                        ],
-                        "modifier": {
-                            "spacing": 8
-                        }
+                        ]
                     }
                 ]
+            },
+            {
+                "type": "spacer",
+                "modifiers": {
+                    "width": 16
+                }
             },
             {
                 "type": "button",
                 "action": "careem://now.careem.com/home",
                 "content": [
                     {
-                        "type": "image",
-                        "content": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/d6b73a3eee477051428131275fc1c357",
-                        "modifier": {
-                            "width": 86,
-                            "height": 64
-                        }
-                    },
-                    {
                         "type": "text",
                         "content": "Order now",
                         "text_style": {
-                            "font": "body",
+                            "font": "inter",
                             "font_weight": "semibold",
-                            "color": "ff2d2e2e"
+                            "color": "ff118927",
+                            "size": 16
                         }
                     }
                 ],

@@ -1,15 +1,11 @@
-package it.carlom.feature_a
+package it.carlom.feature_a.modifiers
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.parser.models.ModifierComponent
-import com.example.parser.models.TextStyleModifier
 
 fun ModifierComponent?.toModifier(): Modifier {
     if (this == null) return Modifier
@@ -27,15 +23,6 @@ fun ModifierComponent?.toModifier(): Modifier {
     return initial
 }
 
-fun TextStyleModifier?.toTextStyle(): TextStyle {
-    if (this == null) return TextStyle()
-
-    return TextStyle(
-        color = color.toColor(),
-        fontSize = size?.sp ?: TextUnit.Inherit
-    )
-}
-
 fun String?.toColor(): Color {
     if (this == null) return Color.Unspecified
     if (this.length > 8) throw IllegalArgumentException("Color string cant be longer than 8 chars. this should be ARGB format in hex")
@@ -49,7 +36,6 @@ fun String?.toColor(): Color {
 
     return Color(formatted.toLong(16))
 }
-
 
 @OptIn(InternalLayoutApi::class)
 fun toHorizontalArrangement(horizontalArrangement: String?): Arrangement.Horizontal {

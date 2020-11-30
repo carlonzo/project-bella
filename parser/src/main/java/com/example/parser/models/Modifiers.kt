@@ -20,5 +20,8 @@ data class ModifierComponent(
 @Serializable
 data class TextStyleModifier(
     val color: String? = null,
-    @SerialName("size") val size: Float? = null,
+    val font: String? = null,
+    @SerialName("font_weight") val fontWeight: String? = null,
+    @SerialName("size") val size: Int? = null,
+    @SerialName("line_height") val lineHeight: Int? = null,
 )

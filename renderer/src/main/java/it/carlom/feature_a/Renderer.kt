@@ -17,6 +17,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.parser.models.*
+import it.carlom.feature_a.modifiers.toColor
+import it.carlom.feature_a.modifiers.toHorizontalArrangement
+import it.carlom.feature_a.modifiers.toModifier
+import it.carlom.feature_a.modifiers.toTextStyle
 import it.carlom.feature_a.utils.GlideImage
 
 
