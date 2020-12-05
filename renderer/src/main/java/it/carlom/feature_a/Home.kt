@@ -1,7 +1,7 @@
 package it.carlom.feature_a
 
 import androidx.compose.runtime.Composable
-import androidx.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.parser.models.*
 
 object Home {

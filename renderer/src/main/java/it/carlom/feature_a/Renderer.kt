@@ -2,6 +2,7 @@
 
 package it.carlom.feature_a
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.ScrollableRow
 import androidx.compose.foundation.layout.*
@@ -23,7 +24,7 @@ import it.carlom.feature_a.modifiers.toModifier
 import it.carlom.feature_a.modifiers.toTextStyle
 import it.carlom.feature_a.utils.GlideImage
 
-
+@SuppressLint("ComposableNaming")
 object Renderer {
 
     @Composable
@@ -51,14 +52,12 @@ object Renderer {
 
     @Composable
     fun renderImage(component: ImageComponent) {
-
-        GlideImage(model = component.content ?: "") {
-            if (component.modifier.width != null && component.modifier.height != null) {
-                override(component.modifier.width!!, component.modifier.height!!)
-            }
-            this
+        val size = if (component.modifier.width != null && component.modifier.height != null) {
+            Pair(component.modifier.width!!.dp, component.modifier.height!!.dp)
+        } else {
+            null
         }
-
+        GlideImage(model = component.content ?: "", preferredSize = size)
     }
 
     @Composable
@@ -174,8 +173,15 @@ object Renderer {
     @Composable
     fun renderSpacer(spacer: SpacerComponent) {
 
+        val modifier = spacer.modifier.let { spacerModifier ->
+            var modifier: Modifier = Modifier
+            spacerModifier.width?.let { modifier = modifier.width(it.dp) }
+            spacerModifier.height?.let { modifier = modifier.height(it.dp) }
+            modifier
+        }
+
         Spacer(
-            modifier = spacer.modifier.toModifier().testTag("Spacer"),
+            modifier = modifier.testTag("Spacer"),
         )
 
     }
@@ -188,9 +194,7 @@ object Renderer {
 
             Column(horizontalAlignment = CenterHorizontally) {
 
-                Box(modifier = Modifier.preferredSize(80.dp, 52.dp)) {
-                    GlideImage(careemTile.image)
-                }
+                GlideImage(careemTile.image, preferredSize = Pair(80.dp, 52.dp))
 
                 Text(
                     modifier = Modifier.align(CenterHorizontally),

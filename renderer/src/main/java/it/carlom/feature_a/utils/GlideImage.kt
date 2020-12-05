@@ -1,5 +1,6 @@
 package it.carlom.feature_a.utils
 
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.Drawable
@@ -7,22 +8,22 @@ import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.RectShape
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ImageAsset
-import androidx.compose.ui.graphics.asImageAsset
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.layout.WithConstraints
-import androidx.compose.ui.platform.ContextAmbient
+import androidx.compose.ui.platform.AmbientContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
+import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
 import com.bumptech.glide.request.transition.Transition
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,36 +33,45 @@ import kotlinx.coroutines.launch
 fun GlideImage(
     model: Any,
     onImageReady: (() -> Unit)? = null,
+    preferredSize: Pair<Dp, Dp>? = null,
     customize: RequestBuilder<Bitmap>.() -> RequestBuilder<Bitmap> = { this }
 ) {
+
+    var image by remember { mutableStateOf<ImageBitmap?>(null) }
+    var drawable by remember { mutableStateOf<Drawable?>(null) }
+    var size by remember { mutableStateOf(Pair(0, 0)) }
+    val context = AmbientContext.current
+
     WithConstraints {
-
-        val image = mutableStateOf<ImageAsset?>(null)
-        val drawable = mutableStateOf<Drawable?>(null)
-        val context = ContextAmbient.current
-
         onCommit(model, {
 
-            val width =
-                if (constraints.maxWidth > 0 && constraints.maxWidth < Int.MAX_VALUE) {
-                    constraints.maxWidth
-                } else {
-                    SIZE_ORIGINAL
-                }
+            if (preferredSize != null) {
+                val widthPixel = preferredSize.first.toPx
+                val heightPixel = preferredSize.second.toPx
+                size = Pair(widthPixel, heightPixel)
+            } else {
+                val constraintWidth =
+                    if (constraints.maxWidth > 0 && constraints.maxWidth < Int.MAX_VALUE) {
+                        constraints.maxWidth
+                    } else {
+                        constraints.minWidth
+                    }
 
-            val height =
-                if (constraints.maxHeight > 0 && constraints.maxHeight < Int.MAX_VALUE) {
-                    constraints.maxHeight
-                } else {
-                    SIZE_ORIGINAL
-                }
+                val constraintHeight =
+                    if (constraints.maxHeight > 0 && constraints.maxHeight < Int.MAX_VALUE) {
+                        constraints.maxHeight
+                    } else {
+                        constraints.minHeight
+                    }
 
+                size = Pair(constraintWidth, constraintHeight)
+            }
 
             val glide = kotlin.runCatching { Glide.with(context) }.getOrNull() ?: run {
-                drawable.value = ShapeDrawable().apply {
+                drawable = ShapeDrawable().apply {
                     shape = RectShape()
-                    intrinsicHeight = height
-                    intrinsicWidth = width
+                    intrinsicWidth = size.first
+                    intrinsicHeight = size.second
                     paint.color = Color.GREEN
                 }
                 return@onCommit
@@ -72,16 +82,15 @@ fun GlideImage(
             val job = CoroutineScope(Dispatchers.Main).launch {
                 val customTarget = object : CustomTarget<Bitmap>() {
                     override fun onLoadCleared(placeholder: Drawable?) {
-                        image.value = null
-                        drawable.value = placeholder
+                        image = null
+                        drawable = placeholder
                     }
 
                     override fun onResourceReady(
                         resource: Bitmap,
                         transition: Transition<in Bitmap>?
                     ) {
-                        FrameManager.ensureStarted()
-                        image.value = resource.asImageAsset()
+                        image = resource.asImageBitmap()
                         onImageReady?.invoke()
                     }
                 }
@@ -91,33 +100,46 @@ fun GlideImage(
                 glide
                     .asBitmap()
                     .load(model)
-                    .override(width, height)
+                    .apply(
+                        RequestOptions.overrideOf(size.first, size.second)
+                    )
                     .let(customize)
                     .into(customTarget)
             }
 
             onDispose {
-                image.value = null
-                drawable.value = null
-                target?.let {  glide.clear(it)}
+                image = null
+                drawable = null
+                target?.let { glide.clear(it) }
                 job.cancel()
             }
         })
 
-        val theImage = image.value
-        val theDrawable = drawable.value
+        val theImage = image
+        val theDrawable = drawable
         when {
             theImage != null -> {
-                Image(modifier = Modifier.testTag("GlideImage"), asset = theImage)
+                Image(
+                    modifier = Modifier.preferredSize(size.first.pixelToDp, size.second.pixelToDp)
+                        .testTag("GlideImage"), bitmap = theImage
+                )
             }
             theDrawable != null -> {
-                Canvas(modifier = Modifier.fillMaxSize().testTag("GlideImage-Canvas")) {
+                Canvas(
+                    modifier = Modifier.preferredSize(size.first.pixelToDp, size.second.pixelToDp)
+                        .testTag("GlideImage-Canvas")
+                ) {
                     drawIntoCanvas { canvas -> theDrawable.draw(canvas.nativeCanvas) }
                 }
             }
-            else -> {
-                Box(modifier = Modifier.preferredSize(80.dp, 80.dp).background(androidx.compose.ui.graphics.Color.Gray))
-            }
         }
     }
+
+
 }
+
+private val Dp.toPx: Int
+    get() = (this.value * Resources.getSystem().displayMetrics.density).toInt()
+
+private val Int.pixelToDp: Dp
+    get() = (this / Resources.getSystem().displayMetrics.density).dp

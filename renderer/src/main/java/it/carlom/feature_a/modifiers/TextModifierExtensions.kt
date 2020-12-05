@@ -15,8 +15,8 @@ fun TextStyleModifier?.toTextStyle(): TextStyle {
         fontFamily = font.toFontFamily(),
         fontWeight = fontWeight.toFontWeight(),
         color = color.toColor(),
-        fontSize = size?.sp ?: TextUnit.Inherit,
-        lineHeight = lineHeight?.sp ?: TextUnit.Inherit
+        fontSize = size?.sp ?: TextUnit.Unspecified,
+        lineHeight = lineHeight?.sp ?: TextUnit.Unspecified
     )
 }
 
