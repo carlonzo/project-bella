@@ -18,11 +18,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.parser.models.*
+import dev.chrisbanes.accompanist.glide.GlideImage
 import it.carlom.feature_a.modifiers.toColor
 import it.carlom.feature_a.modifiers.toHorizontalArrangement
 import it.carlom.feature_a.modifiers.toModifier
 import it.carlom.feature_a.modifiers.toTextStyle
-import it.carlom.feature_a.utils.GlideImage
 
 @SuppressLint("ComposableNaming")
 object Renderer {
@@ -52,12 +52,10 @@ object Renderer {
 
     @Composable
     fun renderImage(component: ImageComponent) {
-        val size = if (component.modifier.width != null && component.modifier.height != null) {
-            Pair(component.modifier.width!!.dp, component.modifier.height!!.dp)
-        } else {
-            null
-        }
-        GlideImage(model = component.content ?: "", preferredSize = size)
+        GlideImage(
+            data = component.content ?: "",
+            modifier = component.modifier.toModifier().testTag("GlideImage")
+        )
     }
 
     @Composable
@@ -194,7 +192,7 @@ object Renderer {
 
             Column(horizontalAlignment = CenterHorizontally) {
 
-                GlideImage(careemTile.image, preferredSize = Pair(80.dp, 52.dp))
+                GlideImage(careemTile.image, modifier = Modifier.preferredSize(80.dp, 52.dp))
 
                 Text(
                     modifier = Modifier.align(CenterHorizontally),
