@@ -32,11 +32,11 @@ class ServerFlow(private val port: Int) {
                 buffer.clear()
 
                 val builder = StringBuilder()
-                while (buffer.remaining() > 0) {
+                do {
                     buffer.clear()
                     input.readAvailable(buffer)
                     builder.append(String(buffer.array().copyOfRange(0, buffer.position())))
-                }
+                } while (buffer.remaining() == 0)
 
                 offer(builder.toString())
                 socket.close()
