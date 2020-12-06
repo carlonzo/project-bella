@@ -5,9 +5,11 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.platform.setContent
+import com.example.devbox.ServerFlow
 import com.example.parser.models.Parser
 import it.carlom.feature_a.Renderer
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 import radiography.Radiography
 
 class MainActivity : AppCompatActivity() {
@@ -25,6 +27,15 @@ class MainActivity : AppCompatActivity() {
 
             setContent {
                 Renderer.render(component = rootComponent)
+            }
+
+            ServerFlow(9000).flow.collect {
+
+                setContent {
+                    val newComponent = Parser.parse(it)
+                    Renderer.render(component = newComponent)
+                }
+
             }
         }
 
