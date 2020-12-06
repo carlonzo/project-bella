@@ -70,6 +70,7 @@ data class TextButtonComponent(
 data class ImageComponent(
     override val content: String? = null,
     override val modifier: ModifierComponent = EmptyModifier,
+    @SerialName("corner_radius") val cornerRadius: Int? = null
 ) : Component()
 
 @SerialName("vscroll")

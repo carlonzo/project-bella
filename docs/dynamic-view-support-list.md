@@ -39,4 +39,7 @@
 - button:
   - background_color
   - corner_radius (% radius)
+  
+image:
+  - corner_radius (% radius)
  

@@ -12,6 +12,7 @@ import androidx.compose.material.ButtonConstants.defaultTextButtonColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
@@ -52,9 +53,17 @@ object Renderer {
 
     @Composable
     fun renderImage(component: ImageComponent) {
+        val shape = if (component.cornerRadius != null) {
+            RoundedCornerShape(percent = component.cornerRadius!!)
+        } else {
+            MaterialTheme.shapes.small
+        }
+
         GlideImage(
             data = component.content ?: "",
-            modifier = component.modifier.toModifier().testTag("GlideImage")
+            modifier = component.modifier.toModifier()
+                .clip(shape = shape)
+                .testTag("GlideImage")
         )
     }
 
