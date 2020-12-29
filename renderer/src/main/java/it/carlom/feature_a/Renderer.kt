@@ -8,7 +8,6 @@ import androidx.compose.foundation.ScrollableRow
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.ButtonConstants.defaultTextButtonColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
@@ -151,11 +150,11 @@ object Renderer {
     fun renderTextButton(textButton: TextButtonComponent) {
 
         val colors = if (textButton.backgroundColor != null) {
-            defaultTextButtonColors(
+            ButtonDefaults.textButtonColors(
                 backgroundColor = textButton.backgroundColor.toColor()
             )
         } else {
-            ButtonConstants.defaultTextButtonColors()
+            ButtonDefaults.textButtonColors()
         }
 
         val shape = if (textButton.cornerRadius != null) {
