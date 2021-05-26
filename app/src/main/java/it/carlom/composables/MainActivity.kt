@@ -6,8 +6,8 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.platform.ComposeView
 import com.example.devbox.ServerFlow
-import com.example.parser.models.Parser
-import it.carlom.feature_a.Renderer
+import models.Parser
+import com.projectbella.renderer.Renderer
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 import radiography.Radiography

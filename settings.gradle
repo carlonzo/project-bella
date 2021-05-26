@@ -1,5 +1,0 @@
-rootProject.name = "Project Bella"
-include ':app'
-include ':renderer'
-include ':parser'
-include ':devbox'
