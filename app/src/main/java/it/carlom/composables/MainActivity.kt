@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.ui.platform.setContent
+import androidx.compose.ui.platform.ComposeView
 import com.example.devbox.ServerFlow
 import com.example.parser.models.Parser
 import it.carlom.feature_a.Renderer
@@ -12,6 +12,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 import radiography.Radiography
 
+@ExperimentalCoroutinesApi
 class MainActivity : AppCompatActivity() {
     private lateinit var mainScope:CoroutineScope
 
@@ -25,13 +26,16 @@ class MainActivity : AppCompatActivity() {
 
             val rootComponent = Parser.parse(text)
 
-            setContent {
+            val composeView = ComposeView(this@MainActivity)
+            setContentView(composeView)
+
+            composeView.setContent {
                 Renderer.render(component = rootComponent)
             }
 
             ServerFlow(9000).flow.collect {
 
-                setContent {
+                composeView.setContent {
                     val newComponent = Parser.parse(it)
                     Renderer.render(component = newComponent)
                 }

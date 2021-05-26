@@ -80,8 +80,8 @@ data class VerticalScrollComponent(
     override val modifier: ModifierComponent = EmptyModifier,
 ) : Component()
 
-@SerialName("hscroll")
-@Serializable
+//@SerialName("hscroll")
+//@Serializable
 data class HorizontalScrollComponent(
     override val content: List<Component> = emptyList(),
     override val modifier: ModifierComponent = EmptyModifier,

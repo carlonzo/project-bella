@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import java.nio.ByteBuffer
 
-@OptIn(ExperimentalCoroutinesApi::class)
+@ExperimentalCoroutinesApi
 class ServerFlow(private val port: Int) {
 
     val flow = callbackFlow {
@@ -38,7 +38,7 @@ class ServerFlow(private val port: Int) {
                     builder.append(String(buffer.array().copyOfRange(0, buffer.position())))
                 } while (buffer.remaining() == 0)
 
-                offer(builder.toString())
+                trySend(builder.toString())
                 socket.close()
             }
         }
