@@ -1,13 +1,13 @@
 
 plugins {
     kotlin("multiplatform")
-    id("org.jetbrains.compose") version "0.4.0-build183"
+    id("org.jetbrains.compose")
 }
 
 
 kotlin {
     jvm(){
-//        withJava()
+        withJava()
     }
 
     sourceSets {

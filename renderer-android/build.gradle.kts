@@ -1,7 +1,12 @@
 plugins {
-
     id("com.android.library")
-    id("kotlin-android")
+    id("kotlin-multiplatform")
+    id("org.jetbrains.compose")
+}
+
+kotlin {
+    jvm("desktop")
+    android()
 }
 
 android {
@@ -21,14 +26,14 @@ android {
         compose = true
     }
 
-    val compose_version = "1.0.0-beta07"
+    val compose_version = "1.0.1"
 
     composeOptions {
         kotlinCompilerExtensionVersion = compose_version
     }
 
     dependencies {
-        val accompanist_version = "0.10.0"
+        val accompanist_version = "0.13.0"
 
         implementation(project(":parser"))
 
@@ -40,8 +45,5 @@ android {
         implementation("androidx.compose.material:material-icons-extended:$compose_version")
         implementation("androidx.compose.foundation:foundation:$compose_version")
         implementation("androidx.compose.animation:animation:$compose_version")
-        implementation("com.google.accompanist:accompanist-glide:$accompanist_version")
-        implementation("com.github.bumptech.glide:glide:4.12.0")
-
     }
 }
