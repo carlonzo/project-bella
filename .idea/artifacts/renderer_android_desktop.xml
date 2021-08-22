@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="renderer-android-desktop">
+    <output-path>$PROJECT_DIR$/renderer-android/build/libs</output-path>
+    <root id="archive" name="renderer-android-desktop.jar">
+      <element id="module-output" name="Project_Bella.renderer-android.desktopMain" />
+    </root>
+  </artifact>
+</component>
