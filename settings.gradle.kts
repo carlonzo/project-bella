@@ -1,7 +1,7 @@
 rootProject.name = "Project Bella"
 
-include(":app")
-include(":renderer-android")
+include(":demo-android")
+include(":demo-desktop")
 include(":parser")
 include(":devbox")
-include(":renderer-desktop")
+include(":renderer")

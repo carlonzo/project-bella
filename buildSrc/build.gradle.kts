@@ -1,11 +1,5 @@
-
 plugins {
     `kotlin-dsl`
-}
-
-kotlin {
-    // Add Deps to compilation, so it will become available in main project
-    sourceSets.getByName("main").kotlin.srcDir("buildSrc/src/main/kotlin")
 }
 
 repositories {
@@ -18,7 +12,11 @@ repositories {
 dependencies {
     implementation(Deps.JetBrains.Compose.gradlePlugin)
     implementation(Deps.JetBrains.Kotlin.gradlePlugin)
+    implementation(Deps.JetBrains.Serialization.gradlePlugin)
     implementation(Deps.Android.Tools.Build.gradlePlugin)
-    implementation(Deps.JetBrains.Kotlin.serializaion)
 }
 
+kotlin {
+    // Add Deps to compilation, so it will become available in main project
+    sourceSets.getByName("main").kotlin.srcDir("buildSrc/src/main/kotlin")
+}

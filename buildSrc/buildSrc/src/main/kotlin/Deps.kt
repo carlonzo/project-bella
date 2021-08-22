@@ -1,12 +1,19 @@
 object Deps {
 
   object JetBrains {
+
     object Kotlin {
-      private const val VERSION = "1.5.21"
+      internal const val VERSION = "1.5.21"
       const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$VERSION"
-      const val serializaion = "org.jetbrains.kotlin:kotlin-serialization:$VERSION"
       const val testCommon = "org.jetbrains.kotlin:kotlin-test-common:$VERSION"
       const val testJunit = "org.jetbrains.kotlin:kotlin-test-junit:$VERSION"
+    }
+
+    object Serialization {
+      private const val VERSION = "1.2.2"
+      const val gradlePlugin = "org.jetbrains.kotlin:kotlin-serialization:${Kotlin.VERSION}"
+      const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:$VERSION"
+
     }
 
     object Compose {
