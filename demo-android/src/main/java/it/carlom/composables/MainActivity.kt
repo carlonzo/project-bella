@@ -8,49 +8,55 @@ import androidx.compose.ui.platform.ComposeView
 import com.example.devbox.ServerFlow
 import com.projectbella.parser.models.Parser
 import com.projectbella.renderer.Renderer
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import radiography.Radiography
 
 @ExperimentalCoroutinesApi
 class MainActivity : AppCompatActivity() {
-    private lateinit var mainScope:CoroutineScope
+	private lateinit var mainScope: CoroutineScope
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mainScope = MainScope()
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		mainScope = MainScope()
 
-        mainScope.launch {
+		mainScope.launch {
 
-            val text = withContext(Dispatchers.IO) { resources.assets.open("ad-widget.json").bufferedReader().use { it.readText() } }
+			val text = withContext(Dispatchers.IO) { resources.assets.open("ad-widget.json").bufferedReader().use { it.readText() } }
 
-            val rootComponent = Parser.parse(text)
+			val rootComponent = Parser.parse(text)
 
-            val composeView = ComposeView(this@MainActivity)
-            setContentView(composeView)
+			val composeView = ComposeView(this@MainActivity)
+			setContentView(composeView)
 
-            composeView.setContent {
-                Renderer.render(component = rootComponent)
-            }
+			composeView.setContent {
+				Renderer.render(component = rootComponent)
+			}
 
-            ServerFlow(9000).flow.collect {
+			ServerFlow(9000).flow.collect {
 
-                composeView.setContent {
-                    val newComponent = Parser.parse(it)
-                    Renderer.render(component = newComponent)
-                }
+				composeView.setContent {
+					val newComponent = Parser.parse(it)
+					Renderer.render(component = newComponent)
+				}
 
-            }
-        }
+			}
+		}
 
-        Handler(Looper.getMainLooper()).post {
-            val radio = Radiography.scan()
-            println(radio)
-        }
-    }
+		Handler(Looper.getMainLooper()).post {
+			val radio = Radiography.scan()
+			println(radio)
+		}
+	}
 
-    override fun onDestroy() {
-        mainScope.cancel()
-        super.onDestroy()
-    }
+	override fun onDestroy() {
+		mainScope.cancel()
+		super.onDestroy()
+	}
 }

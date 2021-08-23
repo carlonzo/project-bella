@@ -1,107 +1,105 @@
 {
-    "type": "card",
-    "content" : {
-        "type": "vstack",
-        "content": [
-            {
-                "type": "text",
-                "content": "ORDER FOOD",
-                "text_style": {
-                    "font": "inter",
-                    "font_weight": "semibold",
-                    "color": "ff8697a4",
-                    "size": 12
-                }
-            },
-            {
-                "type": "spacer",
-                "modifier": {
-                    "height": 8
-                }
-
-            },
-            {
-                "type": "hstack",
-                "content": [
-                    {
-                        "type": "image",
-                        "content": "https://www.mangiamagna.com/wp-content/uploads/2019/01/pizzanapol.jpg",
-                        "modifier": {
-                            "width": 86,
-                            "height": 64
-                        }
-                    },
-                    {
-                        "type": "spacer",
-                        "modifier": {
-                            "width": 8
-                        }
-
-                    },
-                    {
-                        "type": "vstack",
-                        "content": [
-                            {
-                                "type": "text",
-                                "content": "Today's special",
-                                "text_style": {
-                                    "font": "inter",
-                                    "font_weight": "semibold",
-                                    "size": 16,
-                                    "line_height": 24,
-                                    "color": "ff2d2e2e"
-                                }
-                            },
-                            {
-                                "type": "text",
-                                "content": "Discover today’s special offers on your favourite restaurants.",
-                                "text_style": {
-                                    "font": "inter",
-                                    "font_weight": "regular",
-                                    "size": 16,
-                                    "line_height": 20,
-                                    "color": "ff2d2e2e"
-                                }
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "type": "spacer",
-                "modifier": {
-                    "height": 16
-                }
-            },
-            {
-                "type": "button",
-                "action": "careem://now.careem.com/home",
-                "content": [
-                    {
-                        "type": "text",
-                        "content": "Order now",
-                        "text_style": {
-                            "font": "inter",
-                            "font_weight": "semibold",
-                            "color": "ff118927",
-                            "size": 16
-                        }
-                    }
-                ],
-                "background_color": "1A18ab33",
-                "corner_radius": 50,
-                "modifier": {
-                    "fill_width": true,
-                    "height": 48
-                }
-            }
-        ],
-        "modifier": {
-            "padding_all": 16
+  "type": "card",
+  "content": {
+    "type": "vstack",
+    "content": [
+      {
+        "type": "text",
+        "content": "ORDER FOOD",
+        "text_style": {
+          "font": "inter",
+          "font_weight": "semibold",
+          "color": "ff8697a4",
+          "size": 12
         }
-    },
+      },
+      {
+        "type": "spacer",
+        "modifier": {
+          "height": 8
+        }
+      },
+      {
+        "type": "hstack",
+        "content": [
+          {
+            "type": "image",
+            "content": "https://www.mangiamagna.com/wp-content/uploads/2019/01/pizzanapol.jpg",
+            "modifier": {
+              "width": 86,
+              "height": 64
+            }
+          },
+          {
+            "type": "spacer",
+            "modifier": {
+              "width": 8
+            }
+          },
+          {
+            "type": "vstack",
+            "content": [
+              {
+                "type": "text",
+                "content": "Today's special",
+                "text_style": {
+                  "font": "inter",
+                  "font_weight": "semibold",
+                  "size": 16,
+                  "line_height": 24,
+                  "color": "ff2d2e2e"
+                }
+              },
+              {
+                "type": "text",
+                "content": "Discover today’s special offers on your favourite restaurants.",
+                "text_style": {
+                  "font": "inter",
+                  "font_weight": "regular",
+                  "size": 16,
+                  "line_height": 20,
+                  "color": "ff2d2e2e"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "spacer",
+        "modifier": {
+          "height": 16
+        }
+      },
+      {
+        "type": "button",
+        "action": "careem://now.careem.com/home",
+        "content": [
+          {
+            "type": "text",
+            "content": "Order now",
+            "text_style": {
+              "font": "inter",
+              "font_weight": "semibold",
+              "color": "ff118927",
+              "size": 16
+            }
+          }
+        ],
+        "background_color": "1A18ab33",
+        "corner_radius": 50,
+        "modifier": {
+          "fill_width": true,
+          "height": 48
+        }
+      }
+    ],
     "modifier": {
-        "padding_all": 16,
-        "elevation": 4
+      "padding_all": 16
     }
+  },
+  "modifier": {
+    "padding_all": 16,
+    "elevation": 4
+  }
 }

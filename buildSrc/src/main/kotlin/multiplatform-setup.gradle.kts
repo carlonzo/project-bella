@@ -1,34 +1,34 @@
 plugins {
-    id("com.android.library")
-    id("kotlin-multiplatform")
+	id("com.android.library")
+	id("kotlin-multiplatform")
 }
 
 kotlin {
-    jvm("desktop")
-    android()
-    ios()
+	jvm("desktop")
+	android()
+	ios()
 
-    js(IR) {
-        browser()
-    }
+	js(IR) {
+		browser()
+	}
 
-    sourceSets {
-        named("commonTest") {
-            dependencies {
-                implementation(Deps.JetBrains.Kotlin.testCommon)
-            }
-        }
+	sourceSets {
+		named("commonTest") {
+			dependencies {
+				implementation(Deps.JetBrains.Kotlin.testCommon)
+			}
+		}
 
-        named("androidTest") {
-            dependencies {
-                implementation(Deps.JetBrains.Kotlin.testJunit)
-            }
-        }
-        named("desktopTest") {
-            dependencies {
-                implementation(Deps.JetBrains.Kotlin.testJunit)
-            }
-        }
+		named("androidTest") {
+			dependencies {
+				implementation(Deps.JetBrains.Kotlin.testJunit)
+			}
+		}
+		named("desktopTest") {
+			dependencies {
+				implementation(Deps.JetBrains.Kotlin.testJunit)
+			}
+		}
 
 //        maybe one day..
 //        named("jsTest") {
@@ -36,9 +36,9 @@ kotlin {
 //                implementation(Deps.JetBrains.Kotlin.testJs)
 //            }
 //        }
-    }
+	}
 
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "1.8"
-    }
+	tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+		kotlinOptions.jvmTarget = "1.8"
+	}
 }

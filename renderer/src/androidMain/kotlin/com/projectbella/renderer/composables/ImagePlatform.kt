@@ -9,10 +9,10 @@ import coil.compose.rememberImagePainter
 actual fun ImagePlatform(
 	source: String,
 	modifier: Modifier
-){
+) {
 	Image(
 		painter = rememberImagePainter(source),
-		modifier= modifier,
+		modifier = modifier,
 		contentDescription = null
 	)
 }

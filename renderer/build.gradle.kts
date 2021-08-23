@@ -1,20 +1,20 @@
 plugins {
-    id("multiplatform-compose-setup")
-    id("android-setup")
+	id("multiplatform-compose-setup")
+	id("android-setup")
 }
 
 kotlin {
-    sourceSets {
-        named("commonMain") {
-            dependencies {
-                implementation(project(":parser"))
-            }
-        }
+	sourceSets {
+		named("commonMain") {
+			dependencies {
+				implementation(project(":parser"))
+			}
+		}
 
-        named("androidMain") {
-            dependencies {
-                implementation(Deps.coil)
-            }
-        }
-    }
+		named("androidMain") {
+			dependencies {
+				implementation(Deps.coil)
+			}
+		}
+	}
 }

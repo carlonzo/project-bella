@@ -1,4 +1,5 @@
 # Components
+
 - vstack
 - hstack
 - text
@@ -10,6 +11,7 @@
 - card
 
 # Modifiers
+
 - padding ([top, right, bottom, left])
 - padding_all (16)
 - width
@@ -17,29 +19,30 @@
 - fill_width (true|false)
 - fill_height (true|false)
 
-
 # Custom field
+
 - text:
-  - text_style: 
-    - font_weight: [thin, extralight, light, normal, medium, semibold, bold, extrabold, black]
-    - size
-    - color
-    - font (font family)
-    - line_height
+    - text_style:
+        - font_weight: [thin, extralight, light, normal, medium, semibold, bold, extrabold, black]
+        - size
+        - color
+        - font (font family)
+        - line_height
 
 - vstack:
-  - arrangement: [space_evenly, center, start, end]
+    - arrangement: [space_evenly, center, start, end]
 
 - hstack:
-  - arrangement: [space_evenly, center, top, bottom]
+    - arrangement: [space_evenly, center, top, bottom]
 
 - card:
-  - elevation
+    - elevation
 
 - button:
-  - background_color
-  - corner_radius (% radius)
-  
+    - background_color
+    - corner_radius (% radius)
+
 image:
-  - corner_radius (% radius)
+
+- corner_radius (% radius)
  

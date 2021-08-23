@@ -10,39 +10,39 @@ import kotlinx.serialization.modules.subclass
 
 object Parser {
 
-    private val modules = SerializersModule {
-        fun PolymorphicModuleBuilder<Component>.registerProjectSubclasses() {
-            subclass(RowComponent::class)
-            subclass(ColumnComponent::class)
-            subclass(CardComponent::class)
-            subclass(TextComponent::class)
-            subclass(TextButtonComponent::class)
-            subclass(ImageComponent::class)
-            subclass(VerticalScrollComponent::class)
-            subclass(HorizontalScrollComponent::class)
-            subclass(SpacerComponent::class)
-        }
+	private val modules = SerializersModule {
+		fun PolymorphicModuleBuilder<Component>.registerProjectSubclasses() {
+			subclass(RowComponent::class)
+			subclass(ColumnComponent::class)
+			subclass(CardComponent::class)
+			subclass(TextComponent::class)
+			subclass(TextButtonComponent::class)
+			subclass(ImageComponent::class)
+			subclass(VerticalScrollComponent::class)
+			subclass(HorizontalScrollComponent::class)
+			subclass(SpacerComponent::class)
+		}
 
-        polymorphic(Component::class) { registerProjectSubclasses() }
-    }
+		polymorphic(Component::class) { registerProjectSubclasses() }
+	}
 
-    val json = Json {
-        classDiscriminator = "type"
-        serializersModule = modules
-        ignoreUnknownKeys = true // TODO maybe disable for testing?
-    }
+	val json = Json {
+		classDiscriminator = "type"
+		serializersModule = modules
+		ignoreUnknownKeys = true // TODO maybe disable for testing?
+	}
 
-    fun parse(string: String): Component{
-       return json.decodeFromString(string)
-    }
+	fun parse(string: String): Component {
+		return json.decodeFromString(string)
+	}
 }
 
 
 // test
 private fun main() {
 
-    val component = Parser.parse(
-			"""
+	val component = Parser.parse(
+		"""
             {
             "type": "vstack",
             "content": [
@@ -63,8 +63,8 @@ private fun main() {
                 }
             }
         """.trimIndent()
-		)
+	)
 
-    println(Parser.json.encodeToString(component))
+	println(Parser.json.encodeToString(component))
 
 }
