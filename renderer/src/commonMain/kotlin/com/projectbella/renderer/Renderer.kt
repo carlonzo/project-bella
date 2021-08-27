@@ -4,6 +4,7 @@ package com.projectbella.renderer
 
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
@@ -185,6 +186,8 @@ object Renderer {
 		} else {
 			MaterialTheme.shapes.small
 		}
+
+		println(textButton)
 
 		TextButton(
 			modifier = textButton.modifier

@@ -8,6 +8,7 @@ kotlin {
 		named("commonMain") {
 			dependencies {
 				implementation(project(":parser"))
+				implementation(compose.preview)
 			}
 		}
 

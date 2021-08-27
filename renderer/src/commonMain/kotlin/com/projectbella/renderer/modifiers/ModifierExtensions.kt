@@ -3,6 +3,7 @@ package com.projectbella.renderer.modifiers
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -14,18 +15,16 @@ import androidx.compose.ui.unit.dp
 import com.projectbella.parser.models.ModifierComponent
 
 fun ModifierComponent.toModifier(): Modifier {
-//    if (this == null) return Modifier
 
 	var initial: Modifier = Modifier
 		.wrapContentHeight(align = Alignment.Top)
 		.wrapContentWidth(align = Alignment.Start)
 
 	width?.let { initial = initial.width(it.dp) }
-	height?.let { initial = initial.width(it.dp) }
+	height?.let { initial = initial.height(it.dp) }
 	fillWidth?.let { initial = initial.fillMaxWidth() }
 	fillHeight?.let { initial = initial.fillMaxHeight() }
 	paddingAll?.let { initial = initial.padding(it.dp) }
-
 	return initial
 }
 

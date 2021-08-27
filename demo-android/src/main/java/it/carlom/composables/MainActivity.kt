@@ -1,8 +1,6 @@
 package it.carlom.composables
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.platform.ComposeView
 import com.example.devbox.ServerFlow
@@ -16,7 +14,6 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import radiography.Radiography
 
 @ExperimentalCoroutinesApi
 class MainActivity : AppCompatActivity() {
@@ -47,11 +44,6 @@ class MainActivity : AppCompatActivity() {
 				}
 
 			}
-		}
-
-		Handler(Looper.getMainLooper()).post {
-			val radio = Radiography.scan()
-			println(radio)
 		}
 	}
 

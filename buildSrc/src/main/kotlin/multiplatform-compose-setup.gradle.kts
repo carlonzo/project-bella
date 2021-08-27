@@ -1,7 +1,7 @@
 import org.jetbrains.compose.compose
 
 plugins {
-	id("com.android.library")
+	id("android-setup")
 	id("kotlin-multiplatform")
 	id("org.jetbrains.compose")
 }
@@ -21,8 +21,8 @@ kotlin {
 
 		named("androidMain") {
 			dependencies {
-				implementation("androidx.appcompat:appcompat:1.3.0-beta01")
-				implementation("androidx.core:core-ktx:1.3.1")
+				implementation("androidx.appcompat:appcompat:1.4.0-alpha03")
+				implementation("androidx.core:core-ktx:1.6.0")
 			}
 		}
 

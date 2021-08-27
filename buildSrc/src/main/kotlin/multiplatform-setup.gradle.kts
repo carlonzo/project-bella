@@ -1,6 +1,6 @@
 plugins {
-	id("com.android.library")
 	id("kotlin-multiplatform")
+	id("android-setup")
 }
 
 kotlin {
@@ -8,9 +8,9 @@ kotlin {
 	android()
 	ios()
 
-	js(IR) {
-		browser()
-	}
+//	js(IR) {
+//		browser()
+//	}
 
 	sourceSets {
 		named("commonTest") {

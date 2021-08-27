@@ -17,7 +17,7 @@ object Deps {
 		}
 
 		object Compose {
-			private const val VERSION = "1.0.0-alpha3"
+			private const val VERSION = "1.0.0-alpha4-build321"
 			const val gradlePlugin = "org.jetbrains.compose:compose-gradle-plugin:$VERSION"
 		}
 	}
@@ -25,7 +25,7 @@ object Deps {
 	object Android {
 		object Tools {
 			object Build {
-				const val gradlePlugin = "com.android.tools.build:gradle:7.1.0-alpha08"
+				const val gradlePlugin = "com.android.tools.build:gradle:7.1.0-alpha10"
 			}
 		}
 	}
