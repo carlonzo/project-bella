@@ -25,7 +25,7 @@ object Deps {
 	object Android {
 		object Tools {
 			object Build {
-				const val gradlePlugin = "com.android.tools.build:gradle:7.1.0-alpha10"
+				const val gradlePlugin = "com.android.tools.build:gradle:7.0.4"
 			}
 		}
 	}

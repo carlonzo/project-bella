@@ -24,12 +24,12 @@ fun main() = application {
 
 		var component by remember { mutableStateOf<Component>(EmptyContent) }
 
+		val file = File("src","/ad-widget.json")
+		println(file.absolutePath)
+
 		LaunchedEffect(true) {
 			val text = withContext(Dispatchers.IO) {
-				File(
-					"/Users/CarloMarinangeli/Projects/project-bella/demo-desktop/src",
-					"ad-widget.json"
-				).bufferedReader().use { it.readText() }
+				file.bufferedReader().use { it.readText() }
 			}
 
 			component = Parser.parse(text)
