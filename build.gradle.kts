@@ -1,3 +1,15 @@
+buildscript {
+	repositories {
+		gradlePluginPortal()
+		google()
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.20")
+		classpath("com.android.tools.build:gradle:7.4.0-alpha02")
+	}
+}
+
 allprojects {
 	repositories {
 		google()
@@ -5,18 +17,3 @@ allprojects {
 		maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
 	}
 }
-
-//subprojects {
-//
-//	tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
-//		kotlinOptions {
-//			// Treat all Kotlin warnings as errors
-//			allWarningsAsErrors = true
-//			freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
-//			freeCompilerArgs += "-Xopt-in=kotlin.Experimental"
-//
-//			// Set JVM target to 1.8
-//			jvmTarget = "1.8"
-//		}
-//	}
-//}
