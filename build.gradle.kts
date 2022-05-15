@@ -1,13 +1,10 @@
-buildscript {
-	repositories {
-		gradlePluginPortal()
-		google()
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.20")
-		classpath("com.android.tools.build:gradle:7.4.0-alpha02")
-	}
+
+
+plugins {
+	id("org.jetbrains.compose") version "1.2.0-alpha01-dev683"
+	alias(libs.plugins.android.application) apply false
+	alias(libs.plugins.android.library) apply false
+	alias(libs.plugins.kotlin.gradle) apply false
 }
 
 allprojects {
