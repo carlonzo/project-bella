@@ -1,3 +1,12 @@
+
+
+plugins {
+	id("org.jetbrains.compose") version "1.2.0-alpha01-dev683"
+	alias(libs.plugins.android.application) apply false
+	alias(libs.plugins.android.library) apply false
+	alias(libs.plugins.kotlin.gradle) apply false
+}
+
 allprojects {
 	repositories {
 		google()
@@ -5,18 +14,3 @@ allprojects {
 		maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
 	}
 }
-
-//subprojects {
-//
-//	tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
-//		kotlinOptions {
-//			// Treat all Kotlin warnings as errors
-//			allWarningsAsErrors = true
-//			freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
-//			freeCompilerArgs += "-Xopt-in=kotlin.Experimental"
-//
-//			// Set JVM target to 1.8
-//			jvmTarget = "1.8"
-//		}
-//	}
-//}

@@ -2,7 +2,7 @@ import org.jetbrains.compose.compose
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
-	kotlin("multiplatform") // kotlin("jvm") doesn't work well in IDEA/AndroidStudio (https://github.com/JetBrains/compose-jb/issues/22)
+	kotlin("multiplatform")
 	id("org.jetbrains.compose")
 }
 
@@ -20,22 +20,20 @@ kotlin {
 			}
 		}
 	}
-
 }
 
 compose.desktop {
 	application {
 		mainClass = "MainKt"
-
 		nativeDistributions {
 			targetFormats(TargetFormat.Dmg, TargetFormat.Deb)
-			packageName = "ProjectBellaDemoDesktop"
+			packageName = "ServerDrivenUiDemoDesktop"
 			packageVersion = "1.0.0"
 
 			windows {
-				menuGroup = "Project Bella Demo"
+				menuGroup = "Server Driven UI Demo"
 				// see https://wixtoolset.org/documentation/manual/v3/howtos/general/generate_guids.html
-				upgradeUuid = "BF9CDA6A-1391-46D5-9ED5-383D6E68CCEB"
+				upgradeUuid = "663E77E6-8A91-4B2B-B419-FCF006427196"
 			}
 		}
 	}
