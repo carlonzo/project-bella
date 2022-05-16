@@ -7,10 +7,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.toComposeImageBitmap
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.jetbrains.skija.Image
+import org.jetbrains.skia.Image
 import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
@@ -21,7 +21,7 @@ fun fetchImage(url: String): ImageBitmap? {
 
 	LaunchedEffect(url) {
 		loadFullImage(url)?.let {
-			image = Image.makeFromEncoded(it).asImageBitmap()
+			image = Image.makeFromEncoded(it).toComposeImageBitmap()
 		}
 	}
 
