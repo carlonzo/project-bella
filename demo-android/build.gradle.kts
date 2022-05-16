@@ -6,7 +6,7 @@ plugins {
 android {
 	compileSdk = 32
 	defaultConfig {
-		applicationId = "it.carlom.composables"
+		applicationId = "com.projectbella.demo"
 		minSdk = 21
 		targetSdk = 32
 		versionCode = 1
@@ -22,8 +22,10 @@ android {
 	buildFeatures.compose = true
 
 	composeOptions {
-		kotlinCompilerExtensionVersion = libs.versions.compose.toString()
+		kotlinCompilerExtensionVersion = libs.versions.compose.android.get()
 	}
+
+	namespace = "com.projectbella.demo"
 }
 
 dependencies {

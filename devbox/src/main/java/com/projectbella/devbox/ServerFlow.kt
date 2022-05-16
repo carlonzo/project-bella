@@ -1,19 +1,18 @@
-package com.example.devbox
+package com.projectbella.devbox
 
 import io.ktor.network.selector.*
 import io.ktor.network.sockets.*
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import java.nio.ByteBuffer
 
-@ExperimentalCoroutinesApi
 class ServerFlow(private val port: Int) {
 
-	val flow = callbackFlow {
+	val flow: Flow<String> = callbackFlow {
 
 		val aSocket = aSocket(ActorSelectorManager(Dispatchers.IO))
 		val tcpSocketBuilder = aSocket.tcp()
@@ -38,7 +37,7 @@ class ServerFlow(private val port: Int) {
 					builder.append(String(buffer.array().copyOfRange(0, buffer.position())))
 				} while (buffer.remaining() == 0)
 
-				trySend(builder.toString())
+				send(builder.toString())
 				socket.close()
 			}
 		}

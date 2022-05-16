@@ -1,20 +1,17 @@
-package it.carlom.composables
+package com.projectbella.demo
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.platform.ComposeView
-import com.example.devbox.ServerFlow
 import com.projectbella.parser.models.Parser
 import com.projectbella.renderer.Renderer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-@ExperimentalCoroutinesApi
 class MainActivity : AppCompatActivity() {
 	private lateinit var mainScope: CoroutineScope
 
@@ -35,14 +32,14 @@ class MainActivity : AppCompatActivity() {
 				Renderer.render(component = rootComponent)
 			}
 
-			ServerFlow(9000).flow.collect {
-
-				composeView.setContent {
-					val newComponent = Parser.parse(it)
-					Renderer.render(component = newComponent)
-				}
-
-			}
+//			ServerFlow(9000).flow.collect { input: String ->
+//
+//				composeView.setContent {
+//					val newComponent = Parser.parse(input)
+//					Renderer.render(component = newComponent)
+//				}
+//
+//			}
 		}
 	}
 

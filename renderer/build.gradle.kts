@@ -60,4 +60,5 @@ android {
 			res.srcDirs("src/androidMain/res")
 		}
 	}
+	namespace = "com.projectbella.rederer"
 }
